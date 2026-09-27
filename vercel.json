@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    { "source": "/imersao-novo-mercado", "destination": "/imersao-novo-mercado/", "permanent": true },
+    { "source": "/", "destination": "/imersao-novo-mercado/", "permanent": false }
+  ],
+  "rewrites": [
+    { "source": "/imersao-novo-mercado/", "destination": "/index.html" },
+    { "source": "/imersao-novo-mercado/:path*", "destination": "/:path*" }
+  ]
+}

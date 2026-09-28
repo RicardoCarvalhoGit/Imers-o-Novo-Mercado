@@ -50,7 +50,11 @@ Os botões "Quero Participar" / "Quero concorrer a uma cortesia" abrem um formul
 5. No `index.html`, substitua as 4 ocorrências de `SEU_TALLY_FORM_ID` pelo ID copiado (busque por `data-tally-open`).
 6. Publique e teste: abra a página, clique em um botão, preencha o formulário de teste e confirme que é redirecionado ao WhatsApp com seu nome na mensagem.
 
-> O disparo do evento de analytics depende do formato de mensagem (`Tally.FormSubmitted`) que o Tally envia via `postMessage` — isso é o comportamento documentado atualmente, mas é uma API de terceiros que pode mudar. Depois de configurar, abra o Console do navegador (F12), envie um teste e confirme que o evento `contato_whatsapp` aparece disparado; se não aparecer, verifique no Console qual mensagem o Tally está realmente enviando.
+**Detalhes técnicos importantes (conforme documentação oficial do Tally):**
+- O script de embed é `https://tally.so/widgets/embed.js` (plural, "widgets") — já está correto no `<head>` do `index.html`.
+- Os botões precisam do atributo `data-tally-form-events-forwarding="1"` para o Tally avisar a página (via `postMessage`) quando o formulário for enviado — sem isso, o clique até abre o pop-up, mas o evento de conversão (GA4/Pixel) nunca dispara. Já está configurado nos 4 botões.
+
+> O disparo do evento de analytics depende do formato de mensagem (`Tally.FormSubmitted`) que o Tally envia via `postMessage` quando `data-tally-form-events-forwarding="1"` está presente. Depois de configurar, abra o Console do navegador (F12), envie um teste e confirme que o evento `contato_whatsapp` aparece disparado; se não aparecer, verifique no Console qual mensagem o Tally está realmente enviando.
 
 ## Deploy em moysescarvalho.com.br/imersao-novo-mercado
 
@@ -84,11 +88,11 @@ Como os links do site (`css/style.css`, `assets/...`) são todos **relativos** (
 
 3. **Conectar o domínio**
    - No projeto da Vercel: **Settings → Domains** → adicione `moysescarvalho.com.br`.
-   - A Vercel vai indicar os registros de DNS a configurar. Hoje (verifique se a Vercel ainda pede os mesmos ao adicionar, pois pode mudar):
-     - **Domínio raiz (`moysescarvalho.com.br`)**: registro **A** apontando para `76.76.21.21`
-     - **`www.moysescarvalho.com.br`** (opcional, recomendado): registro **CNAME** apontando para `cname.vercel-dns.com`
-   - Entre no painel onde o domínio está registrado (registro.br ou outro) e adicione esses registros na zona de DNS.
-   - A propagação pode levar de alguns minutos até 24h. A Vercel mostra na própria tela quando o domínio for validado (ícone verde).
+   - A Vercel indica os registros de DNS a configurar — **use os valores exatos que aparecem na sua tela da Vercel**, pois o CNAME é único por conta. Registros atuais deste projeto (conferidos em 2026-09-28):
+     - **Domínio raiz (`@` / `moysescarvalho.com.br`)**: registro **A** → `216.198.79.1`
+     - **`www.moysescarvalho.com.br`**: registro **CNAME** → `b3e90d2f86a313cb.vercel-dns-017.com.`
+   - Entre no painel onde o domínio está registrado (registro.br ou outro) e adicione (ou edite, se já existir um registro `@` ou `www` apontando pra outro lugar) esses registros na zona de DNS.
+   - A propagação pode levar de alguns minutos até 24h. A tela da Vercel muda de "Invalid Configuration" para validado (ícone verde) automaticamente quando detectar os registros certos — não precisa fazer nada além de esperar depois de salvar no DNS.
 
 4. **Testar**
    - Acesse `https://moysescarvalho.com.br/imersao-novo-mercado/` e confirme que a página carrega com CSS, imagens e o formulário Tally funcionando.

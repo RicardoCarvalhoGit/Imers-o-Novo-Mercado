@@ -717,7 +717,11 @@ p { margin: 0 0 16px; }
   align-self: start;
 }
 
-.faq-cta h3 { font-size: 1.6rem; }
+/* Card escuro dentro de seção clara: o título não herda a cor escura de .section-light h3 */
+.section-light .faq-cta h3 {
+  font-size: 1.6rem;
+  color: var(--color-white);
+}
 .faq-cta p { color: var(--color-text-muted); }
 .faq-cta .btn { margin: 16px 0; }
 .faq-cta-small { font-size: 0.85rem; }

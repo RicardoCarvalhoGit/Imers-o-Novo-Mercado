@@ -188,8 +188,70 @@ p { margin: 0 0 16px; }
 
 .hero-inner {
   position: relative;
-  z-index: 2;
+  z-index: 3;
+  width: 100%;
   max-width: 780px;
+}
+
+.hero-photo {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Brilho dourado atrás da foto para destacar a camisa escura do fundo */
+.hero-photo::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 15%;
+  background: radial-gradient(closest-side, rgba(212, 169, 74, 0.2), transparent);
+  z-index: -1;
+}
+
+.hero-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+  -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
+}
+
+@media (max-width: 899px) {
+  .hero {
+    flex-direction: column;
+    padding-top: 72px;
+  }
+
+  .hero-photo {
+    width: min(78%, 340px);
+    height: 44vh;
+    margin: 0 auto -48px;
+  }
+}
+
+@media (min-width: 900px) {
+  .hero-photo {
+    position: absolute;
+    bottom: 0;
+    right: max(0px, calc((100vw - var(--container-width)) / 2));
+    width: 44%;
+    max-width: 560px;
+    height: 94%;
+  }
+
+  .hero-inner {
+    max-width: var(--container-width);
+  }
+
+  .hero-inner > * {
+    max-width: 56%;
+  }
+
+  .hero-inner > .hero-stats {
+    max-width: 60%;
+  }
 }
 
 .hero-tags {
@@ -254,7 +316,8 @@ p { margin: 0 0 16px; }
   position: absolute;
   right: 6%;
   bottom: 10%;
-  z-index: 2;
+  z-index: 3;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
   font-family: var(--font-script);
   font-style: italic;
   font-size: 1.3rem;
@@ -264,7 +327,8 @@ p { margin: 0 0 16px; }
   display: none;
 }
 
-@media (min-width: 900px) {
+/* Só aparece quando há espaço ao lado da foto, sem sobrepor */
+@media (min-width: 1280px) {
   .hero-script { display: block; }
 }
 
@@ -330,7 +394,12 @@ p { margin: 0 0 16px; }
   object-position: center;
 }
 
-.media-audience { background: linear-gradient(160deg, #2b2f42, #14161f); }
+.media-landscape { aspect-ratio: 3 / 2; }
+
+.media-audience {
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(160deg, #2b2f42, #14161f);
+}
 
 .check-list li {
   position: relative;
@@ -367,8 +436,9 @@ p { margin: 0 0 16px; }
 
 .split-media { position: relative; }
 
+/* No canto superior, sobre o teto da foto, para não cobrir a turma */
 .media-script-dark {
-  bottom: -8px;
+  top: -8px;
   right: -8px;
   background: var(--color-bg-light);
   color: var(--color-text-dark);
@@ -376,6 +446,17 @@ p { margin: 0 0 16px; }
   border-radius: 8px;
   line-height: 1.4;
   box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+@media (max-width: 699px) {
+  .media-script-dark {
+    position: static;
+    display: block;
+    margin-top: 16px;
+    box-shadow: none;
+    padding: 0;
+    background: none;
+  }
 }
 
 /* Pillars */
@@ -437,6 +518,52 @@ p { margin: 0 0 16px; }
   color: var(--color-gold);
   font-size: 1.5rem;
   margin: 0;
+}
+
+/* Fotos de prova social (seção "Para quem é") */
+.proof-gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 56px;
+}
+
+.proof-item {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 3 / 2;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #232838;
+}
+
+.proof-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+/* Foto vertical: enquadra o palestrante em vez do teto */
+.proof-item-tall img { object-position: center 70%; }
+
+.proof-item:hover img { transform: scale(1.04); }
+
+.proof-item figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 40px 20px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-white);
+  background: linear-gradient(to top, rgba(11, 13, 19, 0.85), transparent);
+}
+
+@media (min-width: 700px) {
+  .proof-gallery { grid-template-columns: repeat(3, 1fr); }
+  .proof-item { aspect-ratio: 4 / 3; }
 }
 
 /* Speaker */

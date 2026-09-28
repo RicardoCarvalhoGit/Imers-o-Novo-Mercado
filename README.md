@@ -14,9 +14,13 @@ imersao-novo-mercado/
 ├── js/
 │   └── script.js
 └── assets/
-    ├── crescimento-resultados.png
-    ├── moyses-apontando.jpg
-    └── moyses-blazer.jpg
+    ├── gestao-indicadores.jpg
+    ├── imersao-turma.jpg
+    ├── moyses-blazer.jpg
+    ├── moyses-hero.webp
+    ├── prova-evento-aplausos.jpg
+    ├── prova-evento-energia.jpg
+    └── prova-treinamento-equipe.jpg
 ```
 
 ## Rodando localmente

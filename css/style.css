@@ -277,6 +277,15 @@ p { margin: 0 0 16px; }
   margin-bottom: 32px;
 }
 
+.hero-date {
+  margin-top: -12px;
+  margin-bottom: 28px;
+  font-weight: 600;
+  color: var(--color-gold);
+}
+
+.hero-date .dot { color: var(--color-text-muted); margin: 0 6px; }
+
 .hero-stats {
   display: flex;
   flex-wrap: wrap;

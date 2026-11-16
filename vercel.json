@@ -6,7 +6,12 @@
   "rewrites": [
     { "source": "/diagnostico", "destination": "/diagnostico/index.html" },
     { "source": "/diagnostico/", "destination": "/diagnostico/index.html" },
+    { "source": "/obrigado", "destination": "/obrigado/index.html" },
+    { "source": "/obrigado/", "destination": "/obrigado/index.html" },
     { "source": "/imersao-novo-mercado/", "destination": "/index.html" },
     { "source": "/imersao-novo-mercado/:path*", "destination": "/:path*" }
+  ],
+  "headers": [
+    { "source": "/obrigado(.*)", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }] }
   ]
 }

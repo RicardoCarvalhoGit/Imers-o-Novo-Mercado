@@ -44,6 +44,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Cliques nas chamadas para o Diagnóstico do Custo Invisível
+  document.querySelectorAll('[data-diagnostico-origem]').forEach(link => {
+    link.addEventListener('click', () => {
+      const origem = link.dataset.diagnosticoOrigem;
+      if (typeof gtag === 'function') {
+        gtag('event', 'clique_diagnostico', { origem_botao: origem });
+      }
+      if (typeof fbq === 'function') {
+        fbq('trackCustom', 'CliqueDiagnostico', { origem: origem });
+      }
+    });
+  });
+
   // Mobile menu toggle
   const menuToggle = document.getElementById('menuToggle');
   const mainNav = document.getElementById('mainNav');

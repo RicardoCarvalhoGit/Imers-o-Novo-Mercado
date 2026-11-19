@@ -87,6 +87,49 @@ p { margin: 0 0 16px; }
 
 .btn-nav { padding: 10px 22px; font-size: 0.85rem; }
 
+.btn-outline {
+  background: transparent;
+  color: var(--color-gold-light);
+  box-shadow: inset 0 0 0 2px var(--color-gold);
+}
+
+.btn-outline:hover {
+  background: rgba(212, 169, 74, 0.12);
+  transform: translateY(-2px);
+}
+
+.hero-btn-diagnostico { margin-left: 12px; }
+
+@media (max-width: 600px) {
+  .hero-btn-diagnostico { margin-left: 0; margin-top: 12px; }
+}
+
+.main-nav .nav-diagnostico { color: var(--color-gold); font-weight: 600; }
+
+/* CTA Diagnóstico do Custo Invisível */
+.section-diagnostico {
+  background: linear-gradient(135deg, #1d1a12, var(--color-bg-darker));
+  border-top: 1px solid rgba(212, 169, 74, 0.25);
+  border-bottom: 1px solid rgba(212, 169, 74, 0.25);
+  padding: 56px 0;
+}
+
+.diagnostico-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.diagnostico-text { flex: 1 1 520px; }
+.diagnostico-text h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); margin-bottom: 12px; }
+.diagnostico-text p:last-child { color: var(--color-text-muted); max-width: 640px; }
+.diagnostico-text strong { color: var(--color-white); }
+
+.faq-cta-diagnostico { font-size: 0.85rem; margin-top: 18px; }
+.faq-cta-diagnostico a { color: var(--color-gold-light); font-weight: 600; text-decoration: underline; }
+
 /* ===== Header ===== */
 .site-header {
   position: sticky;

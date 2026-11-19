@@ -98,10 +98,17 @@ p { margin: 0 0 16px; }
   transform: translateY(-2px);
 }
 
-.hero-btn-diagnostico { margin-left: 12px; }
+.hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
 
-@media (max-width: 600px) {
-  .hero-btn-diagnostico { margin-left: 0; margin-top: 12px; }
+.cta-note {
+  margin-top: 14px;
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  max-width: 560px;
 }
 
 .main-nav .nav-diagnostico { color: var(--color-gold); font-weight: 600; }
@@ -262,15 +269,18 @@ p { margin: 0 0 16px; }
 }
 
 @media (max-width: 899px) {
+  /* Hero compacto no mobile: os botões precisam aparecer já na primeira tela */
   .hero {
     flex-direction: column;
-    padding-top: 72px;
+    min-height: 0;
+    padding: 12px 0 48px;
   }
 
   .hero-photo {
-    width: min(78%, 340px);
-    height: 44vh;
-    margin: 0 auto -48px;
+    width: min(60%, 260px);
+    height: 26vh;
+    max-height: 220px;
+    margin: 0 auto -16px;
   }
 }
 
@@ -334,6 +344,22 @@ p { margin: 0 0 16px; }
   flex-wrap: wrap;
   gap: 32px;
   margin-top: 48px;
+}
+
+/* Tipografia compacta do hero no mobile (precisa vir depois das regras base) */
+@media (max-width: 899px) {
+  .hero-tags { margin-bottom: 10px; font-size: 0.68rem; letter-spacing: 0.18em; }
+  .hero-title { font-size: clamp(1.5rem, 7.4vw, 2.2rem); margin-bottom: 12px; }
+  .hero-subtitle { font-size: 0.92rem; margin-bottom: 18px; }
+  .hero-date { margin-top: -4px; margin-bottom: 16px; font-size: 0.88rem; }
+  .hero-ctas .btn { flex: 1 1 100%; padding: 15px 20px; text-align: center; font-size: 0.92rem; }
+  .cta-note { font-size: 0.82rem; margin-top: 10px; }
+  .hero-stats { margin-top: 32px; }
+}
+
+/* Celulares com tela baixa: esconde o subtítulo para não empurrar os botões */
+@media (max-width: 899px) and (max-height: 680px) {
+  .hero-subtitle { display: none; }
 }
 
 .hero-stat {
@@ -887,3 +913,5 @@ p { margin: 0 0 16px; }
     border-bottom: 1px solid rgba(255,255,255,0.08);
   }
 }
+
+.nowrap { white-space: nowrap; }
